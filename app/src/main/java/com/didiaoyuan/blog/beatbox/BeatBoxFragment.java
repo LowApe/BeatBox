@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.List;
+
 /**
  * Created by Mr.Qu on 2017/10/18.
  */
@@ -17,6 +19,7 @@ import android.widget.Button;
 public class BeatBoxFragment extends Fragment {
     /*变量定义*/
     private BeatBox mBeatBox;
+    private Sound mSound;
 
     public static BeatBoxFragment newInstance(){
         return new BeatBoxFragment();
@@ -36,7 +39,7 @@ public class BeatBoxFragment extends Fragment {
         RecyclerView recyclerView=view.findViewById(R.id
                 .fragment_beat_box_recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        recyclerView.setAdapter(new SoundAdapter());
+        recyclerView.setAdapter(new SoundAdapter(mBeatBox.getSounds()));
         return view;
     }
     /*ViewHolder 内部类*/
@@ -47,10 +50,20 @@ public class BeatBoxFragment extends Fragment {
             super(inflater.inflate(R.layout.list_item_sound,container,false));
             mButton=itemView.findViewById(R.id.list_item_sound_button);
         }
+
+        /*绑定声音方法*/
+        public void bindSound(Sound sound){
+            mSound =sound;
+            mButton.setText(mSound.getName());
+        }
     }
+
     /*Adapter 内部类*/
     private class SoundAdapter extends RecyclerView.Adapter<SoundHolder>{
-
+        private List<Sound> mSounds;
+        public SoundAdapter(List<Sound> sounds){
+            mSounds=sounds;
+        }
         @Override
         public SoundHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater=LayoutInflater.from(getActivity());
@@ -59,12 +72,13 @@ public class BeatBoxFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(SoundHolder holder, int position) {
-
+            Sound sound=mSounds.get(position);
+            holder.bindSound(sound);
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mSounds.size();
         }
     }
 }
