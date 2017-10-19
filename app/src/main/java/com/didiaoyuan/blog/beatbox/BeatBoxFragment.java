@@ -15,9 +15,20 @@ import android.widget.Button;
  */
 
 public class BeatBoxFragment extends Fragment {
+    /*变量定义*/
+    private BeatBox mBeatBox;
+
     public static BeatBoxFragment newInstance(){
         return new BeatBoxFragment();
     }
+/*onCreate 方法初始化控件*/
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mBeatBox=new BeatBox(getActivity());
+
+    }
+/*onCreateView 加载 fragment 的布局*/
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
