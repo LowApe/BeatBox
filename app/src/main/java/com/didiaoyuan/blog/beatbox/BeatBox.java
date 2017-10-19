@@ -19,6 +19,7 @@ public class BeatBox {
     private AssetManager mAssetManager;
     public BeatBox(Context context){
         mAssetManager=context.getAssets();
+        loadSounds();
     }
     private void loadSounds(){
         String[] soundNames;
