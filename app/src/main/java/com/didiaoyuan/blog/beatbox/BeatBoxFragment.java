@@ -43,18 +43,25 @@ public class BeatBoxFragment extends Fragment {
         return view;
     }
     /*ViewHolder 内部类*/
-    private class SoundHolder extends RecyclerView.ViewHolder{
+    private class SoundHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
         private Button mButton;
 
         public SoundHolder(LayoutInflater inflater, ViewGroup container) {
             super(inflater.inflate(R.layout.list_item_sound,container,false));
             mButton=itemView.findViewById(R.id.list_item_sound_button);
+            mButton.setOnClickListener(this);
         }
 
         /*绑定声音方法*/
         public void bindSound(Sound sound){
             mSound =sound;
             mButton.setText(mSound.getName());
+        }
+
+        @Override
+        public void onClick(View view) {
+            mBeatBox.play(mSound);
         }
     }
 
