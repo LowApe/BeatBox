@@ -12,3 +12,5 @@
 > 修改主题样式
 
 ![](http://ww1.sinaimg.cn/mw690/006rAlqhly1fkr3bc58fuj30au0jydj4.jpg)
+
+![](http://ww1.sinaimg.cn/mw690/006rAlqhly1fkr3lejpefj30az0k1gou.jpg)
