@@ -9,4 +9,6 @@
 > 加载音频，播放音频，当设备旋转时，保存应用
 
 # 第三阶段
+> 修改主题样式
 
+![](http://ww1.sinaimg.cn/mw690/006rAlqhly1fkr38i3dtvj30av0meae8.jpg)
