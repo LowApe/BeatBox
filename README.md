@@ -11,6 +11,4 @@
 # 第三阶段
 > 修改主题样式
 
-![](http://ww1.sinaimg.cn/large/006rAlqhly1fkr38i3dtvj30av0meae8.jpg)
-
-----
+![](http://ww1.sinaimg.cn/mw690/006rAlqhly1fkr3bc58fuj30au0jydj4.jpg)
