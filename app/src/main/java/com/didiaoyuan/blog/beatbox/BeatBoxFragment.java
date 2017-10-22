@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
 public class BeatBoxFragment extends Fragment {
     /*变量定义*/
     private BeatBox mBeatBox;
-    private Sound mSound;
+
 
     public static BeatBoxFragment newInstance(){
         return new BeatBoxFragment();
@@ -30,6 +31,11 @@ public class BeatBoxFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mBeatBox=new BeatBox(getActivity());
 
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mBeatBox.release();
     }
 /*onCreateView 加载 fragment 的布局*/
     @Nullable
@@ -43,10 +49,9 @@ public class BeatBoxFragment extends Fragment {
         return view;
     }
     /*ViewHolder 内部类*/
-    private class SoundHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    private class SoundHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private Button mButton;
-
+        private Sound mSound;
         public SoundHolder(LayoutInflater inflater, ViewGroup container) {
             super(inflater.inflate(R.layout.list_item_sound,container,false));
             mButton=itemView.findViewById(R.id.list_item_sound_button);
@@ -55,12 +60,14 @@ public class BeatBoxFragment extends Fragment {
 
         /*绑定声音方法*/
         public void bindSound(Sound sound){
-            mSound =sound;
+            mSound=sound;
             mButton.setText(mSound.getName());
+            Log.e("sample_sounds", "times1 ID:"+mSound.getSoundId());
         }
 
         @Override
         public void onClick(View view) {
+            Log.e("sample_sounds", "times2 ID:"+mSound.getSoundId());
             mBeatBox.play(mSound);
         }
     }
@@ -80,6 +87,7 @@ public class BeatBoxFragment extends Fragment {
         @Override
         public void onBindViewHolder(SoundHolder holder, int position) {
             Sound sound=mSounds.get(position);
+
             holder.bindSound(sound);
         }
 
@@ -89,9 +97,5 @@ public class BeatBoxFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mBeatBox.release();
-    }
+
 }

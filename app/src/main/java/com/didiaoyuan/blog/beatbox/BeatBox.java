@@ -64,11 +64,13 @@ public class BeatBox {
     private void load(Sound sound) throws IOException {
         AssetFileDescriptor afd = mAssetManager.openFd(sound.getAssetPath());
         int soundId = mSoundPool.load(afd, 1);
+        Log.e(TAG, "load: id"+soundId);
         sound.setSoundId(soundId);
     }
 
     public void play(Sound sound) {
         Integer soundId = sound.getSoundId();
+        Log.e("sample_sounds", "play: ID"+soundId);
         if (soundId == null) {
             return;
         }
