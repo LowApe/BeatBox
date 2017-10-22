@@ -51,7 +51,7 @@ public class BeatBox {
                 load(sound);
                 mSounds.add(sound);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG,"Could not load sound" + filename,e);
             }
 
         }
@@ -73,5 +73,8 @@ public class BeatBox {
             return;
         }
         mSoundPool.play(soundId,1.0f,1.0f,1,0,1.0f);
+    }
+    public void release(){
+        mSoundPool.release();
     }
 }
